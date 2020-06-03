@@ -16,9 +16,9 @@ class TaskController extends Controller
     public function index()
     {
         
-        // $tasks =  Task::paginate(5);
+         $tasks =  Task::paginate(5);
 
-       $tasks =  Task::orderBy('due_date')->get();
+       
        
         return response()->json($tasks);
          

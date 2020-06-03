@@ -47,8 +47,10 @@
             <my-btn text="Annuleer wijziging" type="submit" class="ml-2 mt-3" @click="cancelEdditing()"></my-btn>
             <my-btn text="Wijzig taak" type="submit" class="ml-2 mt-3"></my-btn>
         </div>
-        
+         
         </form>
+      
+     
         <h3 class="mt-2">Taken: </h3>
             <table class="table ">
                 <thead class="thead-custom">
@@ -61,7 +63,7 @@
                     </tr>
                 </thead>      
                 <tbody>
-                    <tr v-for="task in tasks" :key="task.id">
+                    <tr v-for="task in tasks.data" :key="task.id">
                             <td >{{task.title}}</td>
                             <td>
                                   <span v-if="task.due_date === null"> onbekend</span>
@@ -85,6 +87,30 @@
                     </tbody>
                    
                 </table>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination ml-2 ">
+                             
+                   <li class="page-item disabled mr-3">
+                       <a class="page-link text-dark " href="#">Pagina {{tasks.current_page}} van {{tasks.last_page}}</a>
+                    </li>
+            
+                        <li v-bind:class="[{disabled: !tasks.prev_page_url}]" class="page-item ">
+                            <a  class="page-link" href="#" @click="fetchTasks(tasks.first_page_url)">Eerste</a>
+                        </li>
+                        <li v-bind:class="[{disabled: !tasks.prev_page_url}]" class="page-item ">
+                            <a  class="page-link" href="#" @click="fetchTasks(tasks.prev_page_url)">Vorige</a>
+                        </li>
+                        
+               
+                        <li v-bind:class="[{disabled: !tasks.next_page_url}]" class="page-item ">
+                            <a  class="page-link" href="#" @click="fetchTasks(tasks.next_page_url)">Volgende</a>
+                        </li>
+                        <li v-bind:class="[{disabled: !tasks.next_page_url}]" class="page-item ">
+                            <a  class="page-link" href="#" @click="fetchTasks(tasks.last_page_url)">Laatste</a>
+                        </li>
+                
+                     </ul>
+                </nav>
             
          </div>
    
@@ -102,28 +128,40 @@ export default {
        
         return{
             moment:moment,
-            tasks: [],
+            tasks: {},
             edit: false,
             title:"",
             due_date:"",
             completed:"",
             working_on:"",
+            pagination: {}
+            
            
                  
         }
         
     },
-        
-      created(){
-          
-          axios.get('./api/task')
-                            
-        .then(response => this.tasks = response.data)
-        
-     
-        
+       created(){
+           this.fetchTasks();
+                           
+        // .then(response => this.tasks = response.data)
+            
     },
+        
+    
     methods: {
+    fetchTasks(page_url){
+           
+          page_url = page_url || '/api/task'
+          axios.get(page_url).then(({data}) => (
+          this.tasks = data
+          
+          
+          ));
+
+    },
+   
+  
 
      addtask(){
             if(this.edit === false){
@@ -226,6 +264,9 @@ export default {
 
 </script>
 <style scoped>
+    .pagination-custom{
+        background-color: #cccccc; 
+    }
     .thead-custom {
         background-color: #cccccc; 
         
