@@ -70,11 +70,12 @@
                                   <span v-if="task.due_date !== null">{{moment(task.due_date).format(' DD-MM-YYYY')}}</span>
                             </td>
                             <td>
+                                {{task.completed}}
                                 <span v-if="task.completed === 0"> Niet compleet</span>
                                 <span v-else-if="task.completed === 1"> Compleet</span>
                             </td>
                             <td> 
-                                <span v-if="task.working_on=== 1">Mee bezig</span>
+                                <span v-if="task.working_on === 1">Mee bezig</span>
                                 <span v-else-if="task.working_on=== 0" class="">Niet mee bezig</span>
                             </td>
                             <td>
