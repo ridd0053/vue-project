@@ -29,8 +29,8 @@
     
 
      <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer>
     
+    <script src="/js/app.js" defer>
     
    
 
