@@ -57,7 +57,7 @@
                     <tr>
                       <th>Titel van Taak</th>
                       <th >Einddatum</th>
-                      <th>Compleetheid</th>
+                      <th>Compleet</th>
                       <th >Status</th>
                       <th >Acties</th>
                     </tr>
