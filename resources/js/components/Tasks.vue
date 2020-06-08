@@ -194,7 +194,7 @@ export default {
                 console.log(response);
                 console.log(this.completed);
                 
-                location.reload();
+                // location.reload();
             })
             
             
