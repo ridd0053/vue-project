@@ -24,16 +24,7 @@ class TaskController extends Controller
          
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+  
     /**
      * Store a newly created resource in storage.
      *
@@ -50,45 +41,10 @@ class TaskController extends Controller
         ]);
         Task::create($data);
 
-        return(['message' => "taak succesvol toegevoegd"]);
+        return;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Task $task)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Task $task)
-    {
-        //
-    }
-    public function updateWorkingOn(Request $request, $id)
-    {
-        //    
-
-        $task = Task::find($id);
-  
-        $task->title = $request->get('title');
-        $task->due_date = $request->get('due_date');
-        
-        $task->working_on = $request->get('working_on');
-
-        $task->save(); 
-        return redirect('/');
-         
-    }
+     
 
     /**
      * Update the specified resource in storage.
@@ -103,13 +59,7 @@ class TaskController extends Controller
        
         $task = Task::find($id);
         
-        // $task->title = $request->get('title');
-        // $task->due_date = $request->get('due_date');
-        // $task->completed = $request->get('completed');
-        // $task->working_on = $request->get('working_on');         
-        
        
-        // $task->save(); 
         $data = $request->validate([
             'title' => "required|max:255|",
             'due_date' => "nullable",
@@ -118,7 +68,7 @@ class TaskController extends Controller
         ]);
         $task->update($data);
        
-        return(['message' => "taak succesvol gewijzigd"]);
+        return;
     }
 
     /**
@@ -130,6 +80,6 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         $task->delete();
-        return(['message' => "taak succesvol gewijzigd"]);
+        return;
     }
 }

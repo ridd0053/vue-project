@@ -14,11 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
 
 // Route::get('/task', 'TaskController@index');
 // Route::get('/task/make', 'TaskController@index');
 Route::resource('task', 'TaskController');
-Route::patch('/update/workingOn/{taskid}', 'TaskController@updateWorkingOn');

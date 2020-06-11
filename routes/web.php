@@ -13,15 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
- Route::get('/', function () {
-    return view('index');
- });
 
 // /Auth::routes();
 
 // Route::get('/dashboard', 'DashboardController@index')->name('home');
 //Route::get('/', 'TaskController@index');
+Route::view('/', 'index');
 
-Route::get('/500', function () {
-    abort(500, 'Server Error');
-});

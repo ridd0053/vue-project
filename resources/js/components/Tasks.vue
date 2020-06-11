@@ -4,7 +4,7 @@
         <h3 v-if="this.edit === false">Maak een taak aan</h3>
         <h3 v-if="this.edit === true">Wijzig een taak</h3>
         <form action="/api/task" class="form" @submit.prevent="addtask">
-        <input type="hidden" name="_token" v-bind:value="csrf">
+        <input type="hidden" name="_token" >
             <div class="row">
                 <div class="form-group col-lg-4 ml-3">
                     <input  name="title" type="text" v-model="title"  class="form-control" placeholder="titel van je taak" required>
@@ -121,9 +121,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
 let id;
 export default {
-    props: [
-        'csrf'
-    ],
+  
    data(){
        
         return{
@@ -134,7 +132,7 @@ export default {
             due_date:"",
             completed:"",
             working_on:"",
-            pagination: {}
+            pagination: {},
             
            
                  
@@ -143,9 +141,7 @@ export default {
     },
        created(){
            this.fetchTasks();
-                           
-        // .then(response => this.tasks = response.data)
-            
+                  
     },
         
     
@@ -169,11 +165,12 @@ export default {
             axios.post('/api/task', {
                     title: this.title,
                     due_date: this.due_date,
-                    method: 'post'
+                   
+                    
             })
             .then(function (response) {
                 console.log(response);
-                location.reload();
+                 location.reload();
             })
             .catch(function (error) {
                 console.log(error);
@@ -191,16 +188,14 @@ export default {
             })
             .then(function (response) {
                 console.log(response);
-                
-                
-               
+                location.reload();  
             })
             
             
             .catch(function (error) {
                 console.log(error);
             })
-                    
+                  
             
             }
 

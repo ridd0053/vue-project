@@ -9,19 +9,16 @@
         
         
         <title>Taken</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-            <!-- Styles -->
+        
+        <!-- Styles -->
         <link href="/css/app.css" rel="stylesheet">
-      
+    </head>
     <body>
     
     <div id="app">
         <titleheader></titleheader>
         
-        
-        <tasks class="mt-4 ml-5" csrf="{{csrf_token()}}" ></tasks>
+        <tasks class="mt-4 ml-5 mr-5"  ></tasks>
           
     </div>
 
